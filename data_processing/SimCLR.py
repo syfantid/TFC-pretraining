@@ -2,8 +2,13 @@ import torch
 import numpy as np
 import os
 
-dataset_lst = ['SleepEEG', 'Epilepsy', 'FD-A', 'FD-B', 'HAR', 'Gesture', 'ecg', 'emg']
-n_classes_lst = [5, 2, 3, 3, 6, 8, 4, 3]
+from definitions import ROOT_DIR
+
+# dataset_lst = ['SleepEEG', 'Epilepsy', 'FD-A', 'FD-B', 'HAR', 'Gesture', 'ecg', 'emg']
+dataset_lst = ['SleepEEG']
+# n_classes_lst = [5, 2, 3, 3, 6, 8, 4, 3]
+n_classes_lst = [5]
+
 
 def scatter_numpy(self, dim, index, src):
     """
@@ -61,17 +66,20 @@ def scatter_numpy(self, dim, index, src):
 
     return self
 
+
 for dataset_name, n_classes in zip(dataset_lst, n_classes_lst):
+    os.chdir(ROOT_DIR)  # set CWD to project root
+
     savepath = os.path.join('code', 'baselines', 'SimCLR', dataset_name)
-    if os.path.isdir(savepath) == False:
+    if not os.path.isdir(savepath):
         os.makedirs(savepath)
 
     train_dict = torch.load(os.path.join('datasets', dataset_name, 'train.pt'))
     val_dict = torch.load(os.path.join('datasets', dataset_name, 'val.pt'))
     test_dict = torch.load(os.path.join('datasets', dataset_name, 'test.pt'))
-    np.save(os.path.join(savepath, 'train_x.npy'), train_dict['samples'].transpose(1,2))
-    np.save(os.path.join(savepath, 'test_x.npy'), test_dict['samples'].transpose(1,2))
-    np.save(os.path.join(savepath, 'val_x.npy'), val_dict['samples'].transpose(1,2))
+    np.save(os.path.join(savepath, 'train_x.npy'), train_dict['samples'].transpose(1, 2))
+    np.save(os.path.join(savepath, 'test_x.npy'), test_dict['samples'].transpose(1, 2))
+    np.save(os.path.join(savepath, 'val_x.npy'), val_dict['samples'].transpose(1, 2))
 
     train_y = np.zeros((len(train_dict['labels']), n_classes))
     val_y = np.zeros((len(val_dict['labels']), n_classes))
