@@ -68,6 +68,7 @@ def scatter_numpy(self, dim, index, src):
 
 
 for dataset_name, n_classes in zip(dataset_lst, n_classes_lst):
+    print("Processing {} dataset...".format(dataset_name))
     os.chdir(ROOT_DIR)  # set CWD to project root
 
     savepath = os.path.join('code', 'baselines', 'SimCLR', dataset_name)
