@@ -25,14 +25,22 @@ import simclr_utitlities
 import transformations
 
 # dataset-specific
-working_directory = 'MIMIC/'  # pre-trained model
+# pre-trained model
+# working_directory = 'MIMIC/'
+working_directory = 'SleepEEG/'
 dataset_save_path = working_directory
 if not os.path.exists(working_directory):
     os.mkdir(working_directory)
 
-data_folder = 'MIMIC'  # data to fine-tune
-input_shape = (76, 48)
-output_shape = 2  # edit this to be the number of label classes
+# MIMIC
+# data_folder = 'MIMIC'  # data to fine-tune
+# input_shape = (48, 76)
+# output_shape = 2  # edit this to be the number of label classes
+
+# Sleep EEG
+data_folder = 'SleepEEG'
+input_shape = (178, 1)
+output_shape = 5
 
 # Load preprocessed data
 np_train = (np.load(os.path.join(data_folder, 'train_x.npy')),

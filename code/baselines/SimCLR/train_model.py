@@ -25,14 +25,14 @@ import simclr_utitlities
 import transformations
 
 # Dataset-specific MIMIC
-# working_directory = 'MIMIC/'
-# data_folder = 'MIMIC'
-# input_shape = (76, 48)  # (timesteps, channels)
+working_directory = 'MIMIC/'
+data_folder = 'MIMIC'
+input_shape = (76, 48)  #  (channels,timesteps) in the MIMIC3 benchmarks instead of (timesteps, channels) in the TFC benchmarks; should we transform the tensor?
 
 # Dataset-specific SleepEEG
-working_directory = 'SleepEEG/'
-data_folder = 'SleepEEG'
-input_shape = (200, 1)
+# working_directory = 'SleepEEG/'
+# data_folder = 'SleepEEG'
+# input_shape = (178, 1)
 
 dataset_save_path = working_directory
 if not os.path.exists(working_directory):
