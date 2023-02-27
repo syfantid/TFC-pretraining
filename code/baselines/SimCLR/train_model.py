@@ -24,20 +24,28 @@ import simclr_models
 import simclr_utitlities
 import transformations
 
+# Dataset-specific MIMIC
+# working_directory = 'MIMIC/'
+# data_folder = 'MIMIC'
+# input_shape = (76, 48)  # (timesteps, channels)
+
+# Dataset-specific SleepEEG
 working_directory = 'SleepEEG/'
+data_folder = 'SleepEEG'
+input_shape = (200, 1)
+
 dataset_save_path = working_directory
 if not os.path.exists(working_directory):
     os.mkdir(working_directory)
 
 # Load preprocessed data
-data_folder = 'SleepEEG'
+
 np_train = (np.load(os.path.join(data_folder, 'train_x.npy')),
            np.load(os.path.join(data_folder, 'train_y.npy')))
 np_val = (np.load(os.path.join(data_folder, 'val_x.npy')),
            np.load(os.path.join(data_folder, 'val_y.npy')))
 np_test = (np.load(os.path.join(data_folder, 'test_x.npy')),
            np.load(os.path.join(data_folder, 'test_y.npy')))
-input_shape = (1500, 1)
 
 # SIMCLR training
 batch_size = 256
@@ -80,7 +88,7 @@ simclr_model.summary()
 
 trained_simclr_model, epoch_losses = simclr_utitlities.simclr_train_model(simclr_model, np_train[0], optimizer, batch_size, transformation_function, temperature=temperature, epochs=epochs, is_trasnform_function_vectorized=True, verbose=1)
 
-simclr_model_save_path = f"{seed}_simclr.hdf5"
+simclr_model_save_path = os.path.join(working_directory, f"{seed}_simclr.hdf5")
 trained_simclr_model.save(simclr_model_save_path)
 
 #plt.figure(figsize=(12,8))

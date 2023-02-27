@@ -6,7 +6,7 @@ import torch
 import os
 import numpy as np
 
-targetdata_path = f"../../datasets/Epilepsy/"
+targetdata_path = f"../../datasets/SleepEEG/"
 
 finetune_dataset = torch.load(os.path.join(targetdata_path, "test.pt"))
 train_data = torch.load(os.path.join(targetdata_path, "train.pt"))

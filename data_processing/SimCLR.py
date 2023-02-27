@@ -5,9 +5,9 @@ import os
 from definitions import ROOT_DIR
 
 # dataset_lst = ['SleepEEG', 'Epilepsy', 'FD-A', 'FD-B', 'HAR', 'Gesture', 'ecg', 'emg']
-dataset_lst = ['SleepEEG']
+dataset_lst = ['SleepEEG', 'MIMIC']
 # n_classes_lst = [5, 2, 3, 3, 6, 8, 4, 3]
-n_classes_lst = [5]
+n_classes_lst = [5, 2]
 
 
 def scatter_numpy(self, dim, index, src):

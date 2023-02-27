@@ -5,7 +5,7 @@ import datetime
 import numpy as np
 import tensorflow as tf
 
-seed = 5
+seed = 2
 tf.random.set_seed(seed)
 np.random.seed(seed)
 
@@ -24,13 +24,17 @@ import simclr_models
 import simclr_utitlities
 import transformations
 
-working_directory = 'sleepEDF/'
+# dataset-specific
+working_directory = 'MIMIC/'  # pre-trained model
 dataset_save_path = working_directory
 if not os.path.exists(working_directory):
     os.mkdir(working_directory)
 
+data_folder = 'MIMIC'  # data to fine-tune
+input_shape = (76, 48)
+output_shape = 2  # edit this to be the number of label classes
+
 # Load preprocessed data
-data_folder = 'pFD_B'
 np_train = (np.load(os.path.join(data_folder, 'train_x.npy')),
            np.load(os.path.join(data_folder, 'train_y.npy')))
 np_val = (np.load(os.path.join(data_folder, 'val_x.npy')),
@@ -38,14 +42,13 @@ np_val = (np.load(os.path.join(data_folder, 'val_x.npy')),
 np_test = (np.load(os.path.join(data_folder, 'test_x.npy')),
            np.load(os.path.join(data_folder, 'test_y.npy')))
 
-input_shape = (178, 1)
+
 
 start_time = datetime.datetime.now()
 start_time_str = start_time.strftime("%Y%m%d-%H%M%S")
 tf.keras.backend.set_floatx('float32')
 
 # SIMCLR _finetuning
-output_shape = 3 # edit this to be the number of label classes
 total_epochs = 100
 batch_size = 16
 
