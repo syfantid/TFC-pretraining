@@ -18,7 +18,7 @@ import simclr_utitlities
 
 working_directory = 'MIMIC/'
 data_folder = 'MIMIC'
-model_name = '20230227-115713_finetuning.hdf5'
+model_name = '20230227-170733_finetuning.hdf5'
 
 # Load preprocessed data
 np_test = (np.load(os.path.join(data_folder, 'test_x.npy')),
