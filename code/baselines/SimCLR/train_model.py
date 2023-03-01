@@ -5,6 +5,8 @@ import datetime
 import numpy as np
 import tensorflow as tf
 
+# todo logging for mimic
+
 seed = 2
 tf.random.set_seed(seed)
 np.random.seed(seed)

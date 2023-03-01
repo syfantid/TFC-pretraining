@@ -27,6 +27,8 @@ import transformations
 # dataset-specific
 # pre-trained model
 
+# todo train using finetune_model only (supervised baseline)
+
 # MIMIC
 working_directory = 'MIMIC/'
 data_folder = 'MIMIC'  # data to fine-tune
